@@ -1,0 +1,5 @@
+Initialize Git : git init 
+
+Check the status of the Git : git status
+
+Add New Files or modified file : git add  --all
