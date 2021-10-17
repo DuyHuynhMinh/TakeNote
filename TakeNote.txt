@@ -24,3 +24,4 @@ Push Local Repository To GitHub : git remote add origin https://github.com/DuyHu
 
 Push our master branch to the origin url  : git push --set-upstream origin master
 
+Git Push To GitHub :  git push origin
