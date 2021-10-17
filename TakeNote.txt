@@ -29,3 +29,13 @@ Git Push To GitHub :  git push origin
 Git Fetch : git fetch origin
 
 Git Pull : git pull origin
+
+Pulling A Branch From GitHub : 
+						1. Create a new Branhch Spring_V1 on github 
+						2. git pull
+						3. git checkout Spring_V1
+
+Push A Branch To GitHub : 
+
+
+
