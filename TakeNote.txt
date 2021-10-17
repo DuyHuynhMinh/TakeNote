@@ -2,4 +2,20 @@ Initialize Git : git init
 
 Check the status of the Git : git status
 
-Add New Files or modified file : git add  --all
+Add New Files or modified file : git add --all [Now the file has been added to the Staging Environment.]
+
+Git Commit : git commit -m "Create takenote file"
+
+Git Commit Log : git log
+
+Git Help : git help --all		   	
+
+Git Create A New  Branch :  git branch Spring_V1
+
+Show all branch : git branch -a
+
+CheckOut new Branch : git checkout Spring_V1
+
+Merge Branches : git merge Spring_V1
+
+Delete Branche : git branch -d Spring_V1
