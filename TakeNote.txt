@@ -12,10 +12,15 @@ Git Help : git help --all
 
 Git Create A New  Branch :  git branch Spring_V1
 
-Show all branch : git branch -a
+Show All branch : git branch -a
 
-CheckOut new Branch : git checkout Spring_V1
+CheckOut New Branch : git checkout Spring_V1
 
 Merge Branches : git merge Spring_V1
 
 Delete Branche : git branch -d Spring_V1
+
+Push Local Repository To GitHub : git remote add origin https://github.com/DuyHuynhMinh/TakeNote.git [ git remote add origin URL specifies that you are adding a remote repository, with the specified URL, as an origin to your local Git repo.]
+
+Push our master branch to the origin url  : git push --set-upstream origin master
+
