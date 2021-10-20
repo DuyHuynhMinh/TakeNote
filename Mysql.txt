@@ -1,0 +1,13 @@
+- CREATE TABLE
+
+	CREATE TABLE IF NOT EXISTS voucher_prompt_audit_log (
+		id BIGINT  AUTO_INCREMENT PRIMARY KEY,
+		user_id VARCHAR(255) ,
+		voucher_id VARCHAR(255),
+		prompt_title VARCHAR(255),
+		prompt_text VARCHAR(255)
+	);
+	
+	
+
+- 
