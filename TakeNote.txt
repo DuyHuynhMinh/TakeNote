@@ -6,7 +6,7 @@ Add New Files or modified file : git add --all [Now the file has been added to t
 
 Git Commit : git commit -m "Create takenote file"
 
-Git Commit Log : git log
+Git Commit Log : git log  ; git log --oneline ; git log --oneline --reverse
 
 Git Help : git help --all		   	
 
@@ -41,6 +41,8 @@ Push A Branch To GitHub :  git push --set-upstream origin Spring
 Skip add to stagaing area : git commit -am "message..."
 
 git config 
+
+
 
 
 
