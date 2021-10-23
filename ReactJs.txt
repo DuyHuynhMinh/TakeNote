@@ -1,0 +1,5 @@
+update npm : npm install -g npm
+Update create-react-app project : npm install -g create-react-app
+Create React project : npx create-react-app react-project
+				       yarn create react-app my-app		
+Start Project : yarn start
