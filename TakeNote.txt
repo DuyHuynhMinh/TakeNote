@@ -40,6 +40,8 @@ Push A Branch To GitHub :  git push --set-upstream origin Spring
 
 Skip add to stagaing area : git commit -am "message..."
 
+git config 
+
 
 
 
