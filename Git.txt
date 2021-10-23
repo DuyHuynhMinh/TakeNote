@@ -1,0 +1,51 @@
+Initialize Git : git init 
+
+Check the status of the Git : git status
+
+Add New Files or modified file : git add --all [Now the file has been added to the Staging Environment.]
+
+Git Commit : git commit -m "Create takenote file"
+
+Git Commit Log : git log  ; git log --oneline ; git log --oneline --reverse
+
+Git Help : git help --all		   	
+
+Git Create A New  Branch :  git branch Spring_V1
+
+Show All branch : git branch -a
+
+CheckOut New Branch : git checkout Spring_V1
+
+Merge Branches : git merge Spring_V1
+
+Delete Branche : git branch -d Spring_V1
+
+Push Local Repository To GitHub : git remote add origin https://github.com/DuyHuynhMinh/TakeNote.git [ git remote add origin URL specifies that you are adding a remote repository, with the specified URL, as an origin to your local Git repo.]
+
+Push our master branch to the origin url  : git push --set-upstream origin master
+
+Git Push To GitHub :  git push origin
+
+Git Fetch : git fetch origin
+
+Git Pull : git pull origin
+
+Pulling A Branch From GitHub : 
+						1. Create a new Branhch Spring_V1 on github 
+						2. git pull
+						3. git checkout Spring_V1
+
+Push A Branch To GitHub :  git push --set-upstream origin Spring
+
+
+Skip add to stagaing area : git commit -am "message..."
+
+git config 
+
+Restore local change : git restore -s
+
+
+
+
+
+
