@@ -9,5 +9,18 @@
 	);
 	
 	
+To connect to the MySQL Server : mysql -u root -p
 
-- 
+To display the databases in the current server : mysql> show databases;
+
+Show create table : SHOW CREATE TABLE customers;
+
+Show time : SELECT NOW();
+
+Concat Funtion : SELECT CONCAT('Jane',' ','Doe') AS 'Full name';
+
+ORDER CLAUSE : 
+	
+	SELECT emp.lastName, emp.firstName, emp.jobTitle
+	FROM classicmodels.employees emp
+	ORDER BY emp.lastName ASC, emp.firstName DESC;

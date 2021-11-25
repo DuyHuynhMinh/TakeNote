@@ -1,0 +1,6 @@
+docker run image
+docker ps 
+docker images
+docker run -d -p 8080:80 nginx:latest
+
+docker container ls

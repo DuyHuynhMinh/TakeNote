@@ -42,6 +42,8 @@ Skip add to stagaing area : git commit -am "message..."
 
 git config 
 
+Check remote GitHub : git remote -v
+
 Restore local change : git restore -s
 
 
