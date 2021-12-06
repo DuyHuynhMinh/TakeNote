@@ -1,12 +1,20 @@
 - CREATE TABLE
 
-	CREATE TABLE IF NOT EXISTS voucher_prompt_audit_log (
-		id BIGINT  AUTO_INCREMENT PRIMARY KEY,
-		user_id VARCHAR(255) ,
-		voucher_id VARCHAR(255),
-		prompt_title VARCHAR(255),
-		prompt_text VARCHAR(255)
-	);
+CREATE TABLE `test`.`voucher_allow_view` (
+   `id` bigint(20) NOT NULL AUTO_INCREMENT,  
+   `voucher_id` bigint(20) DEFAULT NULL,
+   `fasttrack_user_id` bigint(20) DEFAULT NULL,  
+   `evoucher_user_id` bigint(20) DEFAULT NULL,
+   `evoucher_customer_id` bigint(20) DEFAULT NULL,   
+   `code` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,   
+   `allow_view` varchar(10) DEFAULT NULL,   
+   `allowed_email` varchar(255) DEFAULT NULL,   
+   `creation_version` varchar(50) DEFAULT NULL,  
+   `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
+   `updated_at` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,   
+   PRIMARY KEY (`id`),   
+   KEY `voucher_id` (`voucher_id`)
+ ) ENGINE=InnoDB AUTO_INCREMENT=210 DEFAULT CHARSET=utf8
 	
 	
 To connect to the MySQL Server : mysql -u root -p
@@ -24,3 +32,436 @@ ORDER CLAUSE :
 	SELECT emp.lastName, emp.firstName, emp.jobTitle
 	FROM classicmodels.employees emp
 	ORDER BY emp.lastName ASC, emp.firstName DESC;
+	
+When you create a table with a primary key or unique key, MySQL automatically creates a special index named PRIMARY. This index is called the clustered index.
+
+		CREATE INDEX : 
+			
+			CREATE TABLE t(
+		   c1 INT PRIMARY KEY,
+		   c2 INT NOT NULL,
+		   c3 INT NOT NULL,
+		   c4 VARCHAR(10),
+		   INDEX (c2,c3) 
+		);
+		
+		CREATE TABLE leads(
+			lead_id INT AUTO_INCREMENT,
+			first_name VARCHAR(100) NOT NULL,
+			last_name VARCHAR(100) NOT NULL,
+			email VARCHAR(255) NOT NULL,
+			information_source VARCHAR(255),
+			INDEX name(first_name,last_name),
+			UNIQUE email(email),
+			PRIMARY KEY(lead_id)
+		);
+		
+Add an index for a column or a set of columns : 
+
+		CREATE INDEX index_name ON table_name (column_list)
+		--> CREATE INDEX idx_c4 ON t(c4);
+		
+DROP INDEX Statement:
+		
+		ALTER TABLE table_name
+		DROP INDEX index_name;
+		
+Show the indexes of a table :  https://www.mysqltutorial.org/mysql-index/mysql-show-indexes/
+ 
+		SHOW INDEXES FROM database_name.table_name;
+		
+		SHOW INDEXES FROM employees;
+		
+Remove an existing index from a table		: https://www.mysqltutorial.org/mysql-index/mysql-drop-index/
+
+		DROP INDEX index_name ON table_name
+		[algorithm_option | lock_option];
+		
+		ALGORITHM [=] {DEFAULT|INPLACE|COPY}
+		
+Drop the primary key  : 
+
+		DROP INDEX `PRIMARY` ON table_name;
+		
+RENAME TABLE statement : 		
+
+		RENAME TABLE old_table_name TO new_table_name;
+		
+ADD COLUMN statement :  https://www.mysqltutorial.org/mysql-add-column/
+
+		ALTER TABLE table
+		ADD [COLUMN] column_name column_definition [FIRST|AFTER existing_column];
+		
+		ALTER TABLE table
+		ADD [COLUMN] column_name_1 column_1_definition [FIRST|AFTER existing_column],
+		ADD [COLUMN] column_name_2 column_2_definition [FIRST|AFTER existing_column],
+		...
+		
+		
+		ALTER TABLE vehicles
+		ADD COLUMN owner  VARCHAR(100) DEFAULT NULL AFTER model;
+		
+		ALTER TABLE vehicles
+		ADD COLUMN email VARCHAR(100) NOT NULL,
+		ADD COLUMN hourly_rate decimal(10,2) NOT NULL;
+		
+Modify a column : 
+
+		ALTER TABLE table_name
+		MODIFY column_name column_definition
+		[ FIRST | AFTER column_name];  
+		
+		
+		ALTER TABLE vehicles 
+		MODIFY note VARCHAR(100) NOT NULL;
+		
+DROP COLUMN STATEMENT : 
+
+		ALTER TABLE table_name
+		DROP COLUMN column_name;
+		
+		ALTER TABLE Persons
+		DROP COLUMN DateOfBirth;
+		
+		
+RENAME THE COLUMN : 
+		
+		ALTER TABLE vehicles 
+		CHANGE COLUMN note vehicleCondition VARCHAR(100) NOT NULL;	
+		
+UPDATE Multiple Records	
+	
+		UPDATE Customers
+		SET PostalCode = 00000
+		WHERE Country = 'Mexico';
+		
+DELETE Syntax :
+
+		DELETE FROM table_name WHERE condition;
+		
+		DELETE FROM Customers WHERE CustomerName='Alfreds Futterkiste';
+		
+Delete All Records : 
+
+		DELETE FROM table_name;
+		
+		DELETE FROM Customers;
+		
+MIN() function : 
+
+	SELECT MIN(column_name)
+	FROM table_name
+	WHERE condition;
+	
+	SELECT MIN(Price) AS SmallestPrice
+	FROM Products;
+	
+MAX() function : 
+
+	SELECT MAX(column_name)
+	FROM table_name
+	WHERE condition;
+	
+COUNT() Syntax : 
+
+	SELECT COUNT(column_name)
+	FROM table_name
+	WHERE condition;
+	
+AVG() Syntax : 
+	
+	SELECT AVG(column_name)
+	FROM table_name
+	WHERE condition;
+	
+SUM() Syntax : 
+
+	SELECT SUM(column_name)
+	FROM table_name
+	WHERE condition;
+	
+BETWEEN Dates Example : 
+
+	SELECT * FROM Orders
+	WHERE OrderDate BETWEEN '1996-07-01' AND '1996-07-31';
+	
+UNION Operator : 
+
+	SELECT column_name(s) FROM table1
+	UNION
+	SELECT column_name(s) FROM table2;
+	
+GROUP BY Statement : 
+
+	SELECT column_name(s)
+	FROM table_name
+	WHERE condition
+	GROUP BY column_name(s)
+	ORDER BY column_name(s);
+	
+	SELECT COUNT(CustomerID), Country
+	FROM Customers
+	GROUP BY Country
+	ORDER BY COUNT(CustomerID) DESC;
+	
+HAVING Clause : 
+
+	SELECT column_name(s)
+	FROM table_name
+	WHERE condition
+	GROUP BY column_name(s)
+	HAVING condition
+	ORDER BY column_name(s);
+	
+	SELECT COUNT(CustomerID), Country
+	FROM Customers
+	GROUP BY Country
+	HAVING COUNT(CustomerID) > 5;
+	
+	SELECT COUNT(CustomerID), Country
+	FROM Customers
+	GROUP BY Country
+	HAVING COUNT(CustomerID) > 5
+	ORDER BY COUNT(CustomerID) DESC;
+	
+	SELECT Employees.LastName, COUNT(Orders.OrderID) AS NumberOfOrders
+	FROM Orders
+	INNER JOIN Employees ON Orders.EmployeeID = Employees.EmployeeID
+	WHERE LastName = 'Davolio' OR LastName = 'Fuller'
+	GROUP BY LastName
+	HAVING COUNT(Orders.OrderID) > 25;
+	
+EXISTS Operator :
+
+	The EXISTS operator is used to test for the existence of any record in a subquery.
+	The EXISTS operator returns TRUE if the subquery returns one or more records.	
+
+	SELECT column_name(s)
+	FROM table_name
+	WHERE EXISTS
+	(SELECT column_name FROM table_name WHERE condition);
+	
+CASE Statement :
+
+	CASE
+		WHEN condition1 THEN result1
+		WHEN condition2 THEN result2
+		WHEN conditionN THEN resultN
+		ELSE result
+	END;
+	
+	SELECT OrderID, Quantity,
+	CASE
+		WHEN Quantity > 30 THEN 'The quantity is greater than 30'
+		WHEN Quantity = 30 THEN 'The quantity is 30'
+		ELSE 'The quantity is under 30'
+	END AS QuantityText
+	FROM OrderDetails;
+	
+	SELECT CustomerName, City, Country
+	FROM Customers
+	ORDER BY
+	(CASE
+		WHEN City IS NULL THEN Country
+		ELSE City
+	END);
+	
+
+IFNULL() and COALESCE() Functions :
+
+
+	The MySQL IFNULL() function lets you return an alternative value if an expression is NULL.
+	
+	SELECT ProductName, UnitPrice * (UnitsInStock + IFNULL(UnitsOnOrder, 0))
+	FROM Products;
+	
+	SELECT ProductName, UnitPrice * (UnitsInStock + COALESCE(UnitsOnOrder, 0))
+	FROM Products;
+	
+	
+Multi-line Comments :
+
+	/*Select all the columns
+	of all the records
+	in the Customers table:*/
+	SELECT * FROM Customers;
+	
+NOT NULL on CREATE TABLE : 
+	
+	CREATE TABLE Persons (
+		ID int NOT NULL,
+		LastName varchar(255) NOT NULL,
+		FirstName varchar(255) NOT NULL,
+		Age int
+	);
+	
+	
+	ALTER TABLE Persons
+	MODIFY Age int NOT NULL;
+	
+	
+MySQL UNIQUE Constraint :
+
+	The UNIQUE constraint ensures that all values in a column are different.
+
+	Both the UNIQUE and PRIMARY KEY constraints provide a guarantee for uniqueness for a column or set of columns.
+
+	A PRIMARY KEY constraint automatically has a UNIQUE constraint.
+
+	However, you can have many UNIQUE constraints per table, but only one PRIMARY KEY constraint per table.
+	
+	CREATE TABLE Persons (
+		ID int NOT NULL,
+		LastName varchar(255) NOT NULL,
+		FirstName varchar(255),
+		Age int,
+		UNIQUE (ID)
+	);
+	
+	CREATE TABLE Persons (
+		ID int NOT NULL,
+		LastName varchar(255) NOT NULL,
+		FirstName varchar(255),
+		Age int,
+		CONSTRAINT UC_Person UNIQUE (ID,LastName)
+	);
+	
+	ALTER TABLE Persons
+	ADD UNIQUE (ID);
+	
+	ALTER TABLE Persons
+	ADD CONSTRAINT UC_Person UNIQUE (ID,LastName);
+	
+	ALTER TABLE Persons
+	DROP INDEX UC_Person;
+	
+MySQL PRIMARY KEY Constraint :
+
+	The PRIMARY KEY constraint uniquely identifies each record in a table.
+
+	Primary keys must contain UNIQUE values, and cannot contain NULL values.
+
+	A table can have only ONE primary key; and in the table, this primary key can consist of single or multiple columns (fields).
+	
+	CREATE TABLE Persons (
+		ID int NOT NULL,
+		LastName varchar(255) NOT NULL,
+		FirstName varchar(255),
+		Age int,
+		PRIMARY KEY (ID)
+	);
+	
+	
+	CREATE TABLE Persons (
+		ID int NOT NULL,
+		LastName varchar(255) NOT NULL,
+		FirstName varchar(255),
+		Age int,
+		CONSTRAINT PK_Person PRIMARY KEY (ID,LastName)
+	);
+	
+	ALTER TABLE Persons
+	ADD PRIMARY KEY (ID);
+	
+	ALTER TABLE Persons
+	ADD CONSTRAINT PK_Person PRIMARY KEY (ID,LastName);
+	
+	ALTER TABLE Persons
+	DROP PRIMARY KEY;
+	
+FOREIGN KEY Constraint :
+
+	The FOREIGN KEY constraint is used to prevent actions that would destroy links between tables.
+	A FOREIGN KEY is a field (or collection of fields) in one table, that refers to the PRIMARY KEY in another table.
+	The table with the foreign key is called the child table, and the table with the primary key is called the referenced or parent table.
+	
+	
+	CREATE TABLE Orders (
+		OrderID int NOT NULL,
+		OrderNumber int NOT NULL,
+		PersonID int,
+		PRIMARY KEY (OrderID),
+		FOREIGN KEY (PersonID) REFERENCES Persons(PersonID)
+	);
+	
+	To allow naming of a FOREIGN KEY constraint, and for defining a FOREIGN KEY constraint on multiple columns :
+	
+	CREATE TABLE Orders (
+		OrderID int NOT NULL,
+		OrderNumber int NOT NULL,
+		PersonID int,
+		PRIMARY KEY (OrderID),
+		CONSTRAINT FK_PersonOrder FOREIGN KEY (PersonID)
+		REFERENCES Persons(PersonID)
+	);
+	
+	ALTER TABLE Orders
+	ADD FOREIGN KEY (PersonID) REFERENCES Persons(PersonID);
+	
+	ALTER TABLE Orders
+	ADD CONSTRAINT FK_PersonOrder
+	FOREIGN KEY (PersonID) REFERENCES Persons(PersonID);
+	
+	ALTER TABLE Orders
+	DROP FOREIGN KEY FK_PersonOrder;
+	
+
+CHECK Constraint : 
+
+	CREATE TABLE Persons (
+		ID int NOT NULL,
+		LastName varchar(255) NOT NULL,
+		FirstName varchar(255),
+		Age int,
+		CHECK (Age>=18)
+	);
+	
+
+	ALTER TABLE Persons
+	ADD CHECK (Age>=18);
+	
+	ALTER TABLE Persons
+	DROP CHECK CHK_PersonAge;
+	
+
+DEFAULT on CREATE TABLE	 :
+
+		CREATE TABLE Persons (
+			ID int NOT NULL,
+			LastName varchar(255) NOT NULL,
+			FirstName varchar(255),
+			Age int,
+			City varchar(255) DEFAULT 'Sandnes'
+	);
+	
+		
+	
+MySQL Date Data Types
+	MySQL comes with the following data types for storing a date or a date/time value in the database:
+
+	DATE - format YYYY-MM-DD
+	DATETIME - format: YYYY-MM-DD HH:MI:SS
+	TIMESTAMP - format: YYYY-MM-DD HH:MI:SS
+	YEAR - format YYYY or YY	
+
+	
+CREATE VIEW Syntax :
+
+	CREATE VIEW view_name AS
+	SELECT column1, column2, ...
+	FROM table_name
+	WHERE condition;
+	
+	CREATE VIEW [Brazil Customers] AS
+	SELECT CustomerName, ContactName
+	FROM Customers
+	WHERE Country = 'Brazil';
+
+	
+		
+		
+		
+
+		
+		
+
